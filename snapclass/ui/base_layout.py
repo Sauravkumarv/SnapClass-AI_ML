@@ -37,12 +37,12 @@ def style_base_layout():
             @import url('https://fonts.googleapis.com/css2?family=Climate+Crisis&display=swap');
             @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
-            /* Hide Streamlit default elements */
-              #MainMenu,
-              footer,
-              header {
-                  visibility: hidden;
-              }
+            # /* Hide Streamlit default elements */
+            #   #MainMenu,
+            #   footer,
+            #   header {
+            #       visibility: hidden;
+            #   }
 
             /* Reduce top padding */
             .block-container {
