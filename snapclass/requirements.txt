@@ -1,3 +1,4 @@
+streamlit
 # Utilities
 
 numpy
@@ -15,8 +16,11 @@ setuptools<70.0.0
 supabase
 bcrypt
 
-segno  #qr code 
+segno  #qr code   
 pillow  # image preprocess
 
 
-streamlit
+
+
+librosa
+resemblyzer
