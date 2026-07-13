@@ -52,17 +52,17 @@ def get_trained_model():
       X.append(np.array(embedding))
       y.append(student.get('student_id'))
 
-    if len(X)==0:
-      return 0
-    
-    clf=SVC(kernel='linear',probability=True,class_weight='balanced')
+  if len(X) == 0:
+    return None
 
-    try:
-      clf.fit(X,y)
-    except ValueError:
-      pass
+  clf = SVC(kernel='linear', probability=True, class_weight='balanced')
 
-    return {'clf':clf,'X':X,'y':y}
+  try:
+    clf.fit(X, y)
+  except ValueError:
+    return None
+
+  return {'clf': clf, 'X': X, 'y': y}
   
 
 def train_classifier():

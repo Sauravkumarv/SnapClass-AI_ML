@@ -18,7 +18,7 @@ def get_voice_embedding(audio_bytes):
     return embedding.tolist()
   
   except Exception as e:
-    st.error('Voice rcog error')
+    st.error('Voice recognition failed. Try recording again in a quiet environment.')
     return None
   
 
@@ -66,11 +66,11 @@ def process_bulk_audio(audio_bytes,candidate_dict,threshold=0.65):
       sid,score=identify_speaker(embedding,candidate_dict,threshold)
 
       if sid:
-        if sid not in identified_results or score > identified_results(sid):
+        if sid not in identified_results or score > identified_results[sid]:
           identified_results[sid] = score
 
     return identified_results
-  except Exception as e:
-    st.error('Bulk process error')
+  except Exception:
+    st.error('Audio processing failed. Please try a clearer recording.')
     return {}
 

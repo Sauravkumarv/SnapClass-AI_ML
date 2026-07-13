@@ -25,7 +25,6 @@ def create_teacher(username,password,name):
 
 def teacher_login(username,password):
   response=supabase.table("teachers").select("*").eq("username",username).execute()
-  print("Response:", response.data)
 
   if response.data:
     teacher=response.data[0]

@@ -1,45 +1,31 @@
 import streamlit as st
-from src.database.db import enroll_student_to_subject
-from src.database.config import supabase
-import time
-from PIL import Image
 from src.database.db import create_attendence
 
 
-# @st.dialog("Attendence Reports")
-def show_attendence_result(df,logs):
-   st.write('Please review attendence before confirming.')
-   st.dataframe(df,hide_index=True,width='stretch')
+def show_attendence_result(df, logs):
+  st.write('Please review attendence before confirming.')
+  st.dataframe(df, hide_index=True, width='stretch')
 
+  col1, col2 = st.columns(2)
 
-   col1,col2=st.columns(2)
-
-   with col1:
-     if st.button('Discard', width='stretch'):
-      st.session_state.voice_attendence_results=None
-      st.session_state.attendence_images=[]
-
+  with col1:
+    if st.button('Discard', width='stretch'):
+      st.session_state.voice_attendence_results = None
+      st.session_state.attendence_images = []
       st.rerun()
-   with col2:
-     if st.button('Confirms & Save',width='stretch',type='primary'):
+
+  with col2:
+    if st.button('Confirms & Save', width='stretch', type='primary'):
       try:
         create_attendence(logs)
         st.toast("Attendence takes")
-        st.session_state.voice_attendence_results=None
-
-        st.session_state.attendence_images=[]
+        st.session_state.voice_attendence_results = None
+        st.session_state.attendence_images = []
         st.rerun()
-
-      except Exception as e:
+      except Exception:
         st.error('Sync failed')
 
 
 @st.dialog("Attendence Reports")
-def attendence_result_dialog(df,logs):
-  show_attendence_result(df,logs)
- 
-
-
-
-
-  
+def attendence_result_dialog(df, logs):
+  show_attendence_result(df, logs)
